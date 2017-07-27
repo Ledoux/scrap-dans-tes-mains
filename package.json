@@ -1,0 +1,38 @@
+{
+  "ava": {
+    "babel": {
+      "presets": [
+        "latest"
+      ]
+    },
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ]
+  },
+  "author": "Erwan Ledoux",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "commander": "^2.9.0",
+    "jsdom": "^11.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-cli": "^6.24.0",
+    "babel-preset-latest": "^6.24.0",
+    "concurrently": "^3.1.0",
+    "nodemon": "^1.11.0"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "scrap-dans-tes-mains",
+  "scripts": {
+    "compile": "./node_modules/.bin/babel --presets latest -d lib/ src/",
+    "test": "ava -v",
+    "dev": "concurrently \"npm run dev-watch\"",
+    "dev-watch": "nodemon --watch src --exec \"npm run compile\"",
+    "symlink": "source bin/link.sh",
+    "scrap": "node scripts/scrap.js"
+  },
+  "version": "0.0.1"
+}
