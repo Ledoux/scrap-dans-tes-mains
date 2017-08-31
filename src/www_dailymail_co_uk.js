@@ -38,12 +38,16 @@ const setScrapper = scrappersByName => {
           excerpt,
           imageUrl,
           publisherId: '_SCRAP_',
-          rawHTML,
           title
         }
       },
       publishersById: {
         _SCRAP_: publisher
+      },
+      rawsById: {
+        _SCRAP_: {
+          html: rawHTML
+        }
       }
     }
   }

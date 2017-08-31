@@ -37,7 +37,6 @@ const setScrapper = scrappersByName => {
           excerpt,
           imageUrl,
           publisherId: '_SCRAP_',
-          rawHTML,
           title,
           url: url.split('?')[0]
                   .replace(/\/$/, '')
@@ -45,6 +44,11 @@ const setScrapper = scrappersByName => {
       },
       publishersById: {
         _SCRAP_: publisher
+      },
+      rawsById: {
+        _SCRAP_: {
+          html: rawHTML
+        }
       }
     }
   }
