@@ -5,7 +5,7 @@ import webshot from 'webshot'
 
 import { getScrap } from './utils'
 
-export function useScrap (app, config) {
+export const useScrap = (app, config) => {
   // unpack
   const { awsConfig,
     BucketName,

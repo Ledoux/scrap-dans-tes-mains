@@ -1,4 +1,4 @@
-import { defaultElement } from './utils'
+import { defaultElement } from '../default'
 
 const setScrapper = scrappersByName => {
   scrappersByName['www.dailymail.co.uk'] = document => {

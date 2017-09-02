@@ -1,12 +1,14 @@
-import { defaultElement } from './utils'
+import { defaultElement } from '../default'
 
 const setScrapper = scrappersByName => {
-  scrappersByName['www.washingtonpost.com'] = (document, url) => {
+  scrappersByName['www.npr.org'] = document => {
     // LINK
-    const excerpt = ((document.querySelector('article') || defaultElement)
-      .querySelector('p') || defaultElement)
+    const excerpt = ([...((document.querySelector('article') || defaultElement)
+      .querySelector('div.storytext') || defaultElement)
+      .children]
+      .find(element => element.nodeName === 'P') || defaultElement)
       .textContent
-    const title = (document.querySelector("h1[itemprop='headline']") || {})
+    const title = (document.querySelector("h1[itemprop='headline']") || defaultElement)
       .textContent
     const imageUrl = ((document.querySelector('.inline-photo') || defaultElement)
       .querySelector('img') || defaultElement)
@@ -15,16 +17,14 @@ const setScrapper = scrappersByName => {
       .innerHTML
     // AUTHOR
     const author = {
-      name: ((document.querySelector("span[itemprop='author']") || defaultElement)
-        .querySelector('span') || defaultElement)
-        .textContent,
-      imageUrl: ((document.querySelector("div[class='pb-headshot']") || defaultElement)
-        .querySelector("img") || defaultElement)
-        .src
+      name: (document.querySelector("a[rel='author']") || defaultElement)
+        .textContent
+        .trim(),
+      imageUrl: null
     }
     // PUBLISHER
     const publisher = {
-      name: 'The Washington Post'
+      name: 'NPR'
     }
     // RETURN
     return {
@@ -37,9 +37,7 @@ const setScrapper = scrappersByName => {
           excerpt,
           imageUrl,
           publisherId: '_SCRAP_',
-          title,
-          url: url.split('?')[0]
-                  .replace(/\/$/, '')
+          title
         }
       },
       publishersById: {

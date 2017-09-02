@@ -1,4 +1,4 @@
-import { defaultElement } from './utils'
+import { defaultElement } from '../default'
 
 const removingQueries = [
   'h1[itemprop="headline"]',
@@ -15,12 +15,12 @@ const removingQueries = [
 const setScrapper = scrappersByName => {
   scrappersByName['www.breitbart.com'] = document => {
     // LINK
-    const excerpt = ([...(((document.querySelector('article.the-article') || defaultElement)
-      .querySelector('div.entry-content').defaultElement) || defaultElement)
+    const excerpt = ([...((document.querySelector('article.the-article') || defaultElement)
+      .querySelector('div.entry-content') || defaultElement)
       .querySelectorAll('p')]
       .find(pElement => pElement.innerHTML.length > 100) || defaultElement)
       .textContent
-    const title = (document.querySelector("h1[itemprop='headline']") || {})
+    const title = (document.querySelector("h1[itemprop='headline']") || defaultElement)
       .textContent
     const imageUrl = ((document.querySelector('.inline-photo') || defaultElement)
       .querySelector('img') || defaultElement)

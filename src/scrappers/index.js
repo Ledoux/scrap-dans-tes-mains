@@ -1,4 +1,4 @@
-const scrappersByName = {}
+export const scrappersByName = {}
 const fileNames = [
   './www_breitbart_com',
   './www_dailymail_co_uk',
@@ -8,4 +8,3 @@ const fileNames = [
   './www_washingtonpost_com'
 ]
 fileNames.forEach(fileName => require(fileName).default(scrappersByName))
-export default scrappersByName

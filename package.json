@@ -36,5 +36,5 @@
     "symlink": "source bin/link.sh",
     "scrap": "node scripts/scrap.js"
   },
-  "version": "0.0.3"
+  "version": "0.0.5"
 }

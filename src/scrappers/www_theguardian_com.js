@@ -1,30 +1,31 @@
-import { defaultElement } from './utils'
+import { defaultElement } from '../default'
 
 const setScrapper = scrappersByName => {
-  scrappersByName['www.npr.org'] = document => {
+  scrappersByName['www.theguardian.com'] = document => {
     // LINK
-    const excerpt = ([...((document.querySelector('article') || defaultElement)
-      .querySelector('div.storytext') || defaultElement)
+    const excerpt = ([...(document.querySelector('div.content__article-body') || defaultElement)
       .children]
       .find(element => element.nodeName === 'P') || defaultElement)
       .textContent
-    const title = (document.querySelector("h1[itemprop='headline']") || defaultElement)
+    const title = (document.querySelector("h1[itemprop='headline']") || {})
       .textContent
     const imageUrl = ((document.querySelector('.inline-photo') || defaultElement)
-      .querySelector('img') || defaultElement)
+      .querySelector('img') || {})
       .src
     const rawHTML = (document.querySelector('article') || defaultElement)
       .innerHTML
     // AUTHOR
     const author = {
-      name: (document.querySelector("a[rel='author']") || defaultElement)
-        .textContent
-        .trim(),
-      imageUrl: null
+      name: ((document.querySelector("span[itemprop='author']") || defaultElement)
+        .querySelector('span') || defaultElement)
+        .textContent,
+      imageUrl: ((document.querySelector("div[class='pb-headshot']") || defaultElement)
+        .querySelector("img") || defaultElement)
+        .src
     }
     // PUBLISHER
     const publisher = {
-      name: 'NPR'
+      name: 'The Guardian'
     }
     // RETURN
     return {
