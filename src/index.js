@@ -1,5 +1,4 @@
 export * from './default'
 export * from './scrappers'
 export * from './tinify'
-export * from './use'
 export * from './utils'

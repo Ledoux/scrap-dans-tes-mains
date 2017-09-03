@@ -12,11 +12,9 @@
   },
   "author": "Erwan Ledoux",
   "dependencies": {
-    "aws-sdk": "^2.6.13",
     "babel-polyfill": "^6.23.0",
     "commander": "^2.9.0",
-    "jsdom": "^11.0.0",
-    "webshot": "^0.18.0"
+    "jsdom": "^11.0.0"
   },
   "devDependencies": {
     "ava": "^0.18.2",
@@ -36,5 +34,5 @@
     "symlink": "source bin/link.sh",
     "scrap": "node scripts/scrap.js"
   },
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
