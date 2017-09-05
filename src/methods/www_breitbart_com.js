@@ -1,4 +1,4 @@
-import { defaultElement } from '../default'
+import { defaultElement } from './default'
 
 const removingQueries = [
   'h1[itemprop="headline"]',

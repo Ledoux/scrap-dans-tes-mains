@@ -1,4 +1,4 @@
-import { defaultElement } from '../default'
+import { defaultElement } from './default'
 
 const setScrapper = methodsByName => {
   methodsByName['www.dailymail.co.uk'] = document => {

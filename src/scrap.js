@@ -13,8 +13,8 @@ export const scrap = url => {
           // here we determine the method name, for the moment
           // a method name is equivalent to a host name
           const relativeMatch = url.match(/^(?:https?:)?(?:\/\/)?([^\/\?]+)/)
-          const methodName = relativeMatch && relativeMatch[1] || 'default'
-          const method = methodsByName[methodName]
+          const methodName = relativeMatch && relativeMatch[1]
+          const method = methodsByName[methodName] || methodsByName['default']
           // call the method and resolve
           resolve(method && method(document, url))
         }
