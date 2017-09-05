@@ -1,31 +1,29 @@
 import { defaultElement } from '../default'
 
-const setScrapper = scrappersByName => {
-  scrappersByName['www.theguardian.com'] = document => {
+const setScrapper = methodsByName => {
+  methodsByName['www.usatoday.com'] = document => {
     // LINK
-    const excerpt = ([...(document.querySelector('div.content__article-body') || defaultElement)
+    const excerpt = ([...(document.querySelector("div[itemprop='articleBody']") || defaultElement)
       .children]
       .find(element => element.nodeName === 'P') || defaultElement)
       .textContent
-    const title = (document.querySelector("h1[itemprop='headline']") || {})
+    const title = (document.querySelector("h1[itemprop='headline']") || defaultElement)
       .textContent
     const imageUrl = ((document.querySelector('.inline-photo') || defaultElement)
-      .querySelector('img') || {})
+      .querySelector('img') || defaultElement)
       .src
-    const rawHTML = (document.querySelector('article') || defaultElement)
+    const rawHTML = document.querySelector('article')
       .innerHTML
     // AUTHOR
     const author = {
-      name: ((document.querySelector("span[itemprop='author']") || defaultElement)
-        .querySelector('span') || defaultElement)
-        .textContent,
-      imageUrl: ((document.querySelector("div[class='pb-headshot']") || defaultElement)
-        .querySelector("img") || defaultElement)
-        .src
+      name: (document.querySelector("a[rel='author']") || defaultElement)
+        .textContent
+        .trim(),
+      imageUrl: null
     }
     // PUBLISHER
     const publisher = {
-      name: 'The Guardian'
+      name: 'USA Today'
     }
     // RETURN
     return {

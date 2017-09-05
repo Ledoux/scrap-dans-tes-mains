@@ -1,7 +1,7 @@
 import { defaultElement } from '../default'
 
-const setScrapper = scrappersByName => {
-  scrappersByName['www.npr.org'] = document => {
+const setScrapper = methodsByName => {
+  methodsByName['www.npr.org'] = document => {
     // LINK
     const excerpt = ([...((document.querySelector('article') || defaultElement)
       .querySelector('div.storytext') || defaultElement)

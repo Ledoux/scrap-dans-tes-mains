@@ -12,8 +12,8 @@ const removingQueries = [
   'footer'
 ]
 
-const setScrapper = scrappersByName => {
-  scrappersByName['www.breitbart.com'] = document => {
+const setScrapper = methodsByName => {
+  methodsByName['www.breitbart.com'] = document => {
     // LINK
     const excerpt = ([...((document.querySelector('article.the-article') || defaultElement)
       .querySelector('div.entry-content') || defaultElement)

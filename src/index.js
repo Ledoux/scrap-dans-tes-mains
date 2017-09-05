@@ -1,4 +1,3 @@
-export * from './default'
-export * from './scrappers'
+export * from './methods'
 export * from './tinify'
-export * from './utils'
+export * from './scrap'
