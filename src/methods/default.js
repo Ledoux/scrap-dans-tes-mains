@@ -6,6 +6,7 @@ const removingQueries = []
 
 const setScrapper = methodsByName => {
   methodsByName['default'] = (document, url) => {
+    console.log('URL', url)
     // LINK
     const description = (document.querySelector('meta[property="og:description"]') || defaultElement)
       .content

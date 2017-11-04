@@ -1,6 +1,7 @@
 export const methodsByName = {}
 const fileNames = [
   './default',
+  './www_biogeosciences_net',
   './www_breitbart_com',
   './www_dailymail_co_uk',
   './www_npr_org',

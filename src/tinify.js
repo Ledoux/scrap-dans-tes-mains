@@ -1,5 +1,5 @@
 
-export const tinyfy = (object = {}, config = {}) => {
+export const tinify = (object = {}, config = {}) => {
   const maxLength = config.maxLength || 50
   const tinyfiedObject = {}
   Object.keys(object)
@@ -10,7 +10,7 @@ export const tinyfy = (object = {}, config = {}) => {
         ? `${value.slice(0, maxLength)}...`
         : value
       } else if (typeof value === 'object') {
-        tinyfiedObject[key]= tinyfy(value)
+        tinyfiedObject[key]= tinify(value)
       }
     })
   return tinyfiedObject
