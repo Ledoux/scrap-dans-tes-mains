@@ -6,7 +6,6 @@ const removingQueries = []
 
 const setScrapper = methodsByName => {
   methodsByName['default'] = (document, url) => {
-    console.log('URL', url)
     // LINK
     const description = (document.querySelector('meta[property="og:description"]') || defaultElement)
       .content
@@ -16,7 +15,7 @@ const setScrapper = methodsByName => {
       .textContent
     const title = (document.querySelector('meta[property="og:title"]') || defaultElement)
       .content
-    // HTML
+    // RAW
     const articleElement = (document.querySelector('article') || defaultElement)
     removingQueries.forEach(query => {
       const element = articleElement.querySelector(query)
@@ -24,12 +23,16 @@ const setScrapper = methodsByName => {
         element.parentElement.removeChild(element)
       }
     })
-    const rawHTML = articleElement.innerHTML
-    // AUTHOR
-    const author = {
-      name: (document.querySelector('p[itemprop="author"]') || defaultElement)
-        .textContent
+    const raw = {
+      html: articleElement.innerHTML
     }
+    // AUTHORS
+    const authors = [
+      {
+        name: (document.querySelector('p[itemprop="author"]') || defaultElement)
+          .textContent
+      }
+    ]
     // PUBLISHER
     const publisher = {
       name: ((document.querySelector('meta[property="og:site_name"]') || defaultElement)
@@ -39,27 +42,13 @@ const setScrapper = methodsByName => {
     }
     // RETURN
     return {
-      authorsById: {
-        _SCRAP_: author
-      },
-      linksById: {
-        _SCRAP_: {
-          authorId: '_SCRAP_',
-          description,
-          excerpt,
-          publisherId: '_SCRAP_',
-          title,
-          url
-        }
-      },
-      publishersById: {
-        _SCRAP_: publisher
-      },
-      rawsById: {
-        _SCRAP_: {
-          html: rawHTML
-        }
-      }
+      collectionName: 'links',
+      authors,
+      excerpt,
+      publisher,
+      raw,
+      title,
+      url: url.split('?')[0].replace(/\/$/, '')
     }
   }
 }

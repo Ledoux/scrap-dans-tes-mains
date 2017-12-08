@@ -1,3 +1,3 @@
-export * from './methods'
-export * from './scrap'
-export * from './tinify'
+export * from './parse'
+export * from './utils'
+export * from './webshot'

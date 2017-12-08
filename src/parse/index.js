@@ -2,7 +2,7 @@ import { JSDOM } from 'jsdom'
 
 import { methodsByName } from './methods'
 
-export const scrap = url => {
+export const parse = url => {
   return new Promise ((resolve, reject) => {
     JSDOM.fromURL(url)
       .then(dom => {

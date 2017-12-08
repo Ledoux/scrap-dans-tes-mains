@@ -48,22 +48,22 @@ const setScrapper = methodsByName => {
     // RETURN
     return {
       authorsById: {
-        _SCRAP_: author
+        _scrap_: author
       },
       linksById: {
-        _SCRAP_: {
-          authorId: '_SCRAP_',
+        _scrap_: {
+          authorIds: ['_scrap_'],
           excerpt,
           imageUrl,
-          publisherId: '_SCRAP_',
+          publisherId: '_scrap_',
           title
         }
       },
       publishersById: {
-        _SCRAP_: publisher
+        _scrap_: publisher
       },
       rawsById: {
-        _SCRAP_: {
+        _scrap_: {
           html: rawHTML
         }
       }
