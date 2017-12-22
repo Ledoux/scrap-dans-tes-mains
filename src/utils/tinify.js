@@ -1,17 +1,19 @@
-
-export const tinify = (object = {}, config = {}) => {
+export const tinify = (value, config = {}) => {
   const maxLength = config.maxLength || 50
-  const tinyfiedObject = {}
-  Object.keys(object)
-    .forEach(key => {
-      const value = object[key]
-      if (typeof value === 'string') {
-        tinyfiedObject[key] = value.length > maxLength
-        ? `${value.slice(0, maxLength)}...`
-        : value
-      } else if (typeof value === 'object') {
-        tinyfiedObject[key]= tinify(value)
-      }
-    })
-  return tinyfiedObject
+  if (typeof value === 'string') {
+    return value.length > maxLength
+      ? `${value.slice(0, maxLength)}...`
+      : value
+  } else if (Array.isArray(value)) {
+    return value.map(value => tinify(value, config))
+  } else if (typeof value === 'object') {
+    if (value) {
+      const tinifyObject = {}
+      Object.keys(value)
+        .forEach(key => tinifyObject[key] = tinify(value[key], config))
+      return tinifyObject
+    }
+    return value
+  }
+  return value
 }
