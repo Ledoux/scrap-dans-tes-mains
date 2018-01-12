@@ -1,6 +1,7 @@
 export const tinify = (value, config = {}) => {
   const maxLength = config.maxLength || 50
-  if (typeof value === 'string') {
+  // typeof value !== 'string' && console.log('value', value, typeof value)
+  if (typeof value === 'string' || value instanceof RegExp) {
     return value.length > maxLength
       ? `${value.slice(0, maxLength)}...`
       : value

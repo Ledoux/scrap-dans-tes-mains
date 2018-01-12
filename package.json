@@ -16,6 +16,7 @@
     "commander": "^2.9.0",
     "fetch-everywhere": "^1.0.5",
     "jsdom": "^11.0.0",
+    "lodash.merge": "^4.6.0",
     "webshot": "^0.18.0"
   },
   "devDependencies": {
@@ -36,5 +37,5 @@
     "symlink": "source bin/link.sh",
     "scrap": "node scripts/scrap.js"
   },
-  "version": "0.0.11"
+  "version": "0.0.12"
 }
